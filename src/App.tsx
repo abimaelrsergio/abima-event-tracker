@@ -8,7 +8,7 @@ import ListaDeEventos from "./components/ListaDeEventos";
 import { RecoilRoot } from "recoil";
 
 function App() {
-/*
+  /*
   const [eventos, setEventos] = useState<IEvento[]>([
     {
       descricao: "Estudar React",
@@ -43,14 +43,15 @@ function App() {
     //}
     //setEventos([...eventos]);
   };
-  const deletarEvento = (id: number) => {
-    //setEventos([...eventos.filter((evento) => evento.id !== id)]);
-  };
+  
+  //const deletarEvento = (id: number) => {
+  //setEventos([...eventos.filter((evento) => evento.id !== id)]);
+  //};
 
   const aplicarFiltro = (data: Date | null) => {
     setFiltro(data);
   };
-/*
+  /*
   const filtrados = !filtro
     ? eventos
     : eventos.filter(
@@ -71,7 +72,6 @@ function App() {
             <ListaDeEventos
               aoFiltroAplicado={aplicarFiltro}
               aoAlterarStatus={alterarStatusEvento}
-              aoDeletarEvento={deletarEvento}
             />
           </Card>
         </div>
