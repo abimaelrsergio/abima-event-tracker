@@ -5,8 +5,10 @@ import Formulario from "./components/Formulario";
 import { IEvento } from "./interfaces/IEvento";
 import Calendario from "./components/Calendario";
 import ListaDeEventos from "./components/ListaDeEventos";
+import { RecoilRoot } from "recoil";
 
 function App() {
+/*
   const [eventos, setEventos] = useState<IEvento[]>([
     {
       descricao: "Estudar React",
@@ -23,31 +25,32 @@ function App() {
       id: 1642342959,
     },
   ]);
+  */
 
   const [filtro, setFiltro] = useState<Date | null>();
 
   const adicionarEvento = (evento: IEvento) => {
     evento.id = Math.round(new Date().getTime() / 1000);
-    eventos.push(evento);
-    console.log(eventos);
+    //eventos.push(evento);
+    //console.log(eventos);
 
-    setEventos([...eventos]);
+    //setEventos([...eventos]);
   };
   const alterarStatusEvento = (id: number) => {
-    const evento = eventos.find((evento) => evento.id === id);
-    if (evento) {
-      evento.completo = !evento.completo;
-    }
-    setEventos([...eventos]);
+    //const evento = eventos.find((evento) => evento.id === id);
+    //if (evento) {
+    //  evento.completo = !evento.completo;
+    //}
+    //setEventos([...eventos]);
   };
   const deletarEvento = (id: number) => {
-    setEventos([...eventos.filter((evento) => evento.id !== id)]);
+    //setEventos([...eventos.filter((evento) => evento.id !== id)]);
   };
 
   const aplicarFiltro = (data: Date | null) => {
     setFiltro(data);
   };
-
+/*
   const filtrados = !filtro
     ? eventos
     : eventos.filter(
@@ -55,27 +58,28 @@ function App() {
           filtro!.toISOString().slice(0, 10) ===
           evento.inicio.toISOString().slice(0, 10)
       );
-
+*/
   return (
-    <div className={style.App}>
-      <div className={style.Coluna}>
-        <Card>
-          <Formulario aoSalvar={adicionarEvento} />
-        </Card>
-        <hr />
-        <Card>
-          <ListaDeEventos
-            aoFiltroAplicado={aplicarFiltro}
-            aoAlterarStatus={alterarStatusEvento}
-            aoDeletarEvento={deletarEvento}
-            eventos={filtrados}
-          />
-        </Card>
+    <RecoilRoot>
+      <div className={style.App}>
+        <div className={style.Coluna}>
+          <Card>
+            <Formulario />
+          </Card>
+          <hr />
+          <Card>
+            <ListaDeEventos
+              aoFiltroAplicado={aplicarFiltro}
+              aoAlterarStatus={alterarStatusEvento}
+              aoDeletarEvento={deletarEvento}
+            />
+          </Card>
+        </div>
+        <div className={style.Coluna}>
+          <Calendario />
+        </div>
       </div>
-      <div className={style.Coluna}>
-        <Calendario eventos={eventos} />
-      </div>
-    </div>
+    </RecoilRoot>
   );
 }
 

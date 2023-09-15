@@ -1,15 +1,16 @@
 import React from "react";
-import { IEvento } from "../../interfaces/IEvento";
+import { useRecoilValue } from "recoil";
 import Evento from "../Evento";
 import Filtro from "../Filtro";
 import style from "./ListaDeEventos.module.scss";
+import { listaDeEventosState } from "./../../state/atom";
 
 const ListaDeEventos: React.FC<{
-  eventos: IEvento[];
   aoAlterarStatus: (id: number) => void;
   aoDeletarEvento: (id: number) => void;
   aoFiltroAplicado: (data: Date | null) => void;
-}> = ({ eventos, aoDeletarEvento, aoAlterarStatus, aoFiltroAplicado }) => {
+}> = ({ aoDeletarEvento, aoAlterarStatus, aoFiltroAplicado }) => {
+  const eventos = useRecoilValue(listaDeEventosState);
   return (
     <section>
       <Filtro aoFiltroAplicado={aoFiltroAplicado} />
